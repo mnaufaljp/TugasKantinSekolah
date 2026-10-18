@@ -1,0 +1,62 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pembayaran Kantin</title>
+</head>
+<body>
+
+    <h2>Program Pembayaran Kantin</h2>
+
+    Nama Pembeli: <input type="text" id="nama"><br><br>
+
+    Jumlah Nasi Goreng:
+    <input type="number" id="nasi" value="0" min="0"><br><br>
+
+    Jumlah Es Teh:
+    <input type="number" id="teh" value="0" min="0"><br><br>
+
+    Jumlah Roti:
+    <input type="number" id="roti" value="0" min="0"><br><br>
+
+    <button onclick="hitungBayar()">Hitung Pembayaran</button>
+
+    <div id="hasil"></div>
+
+    <script>
+        function hitungBayar() {
+            let nama = document.getElementById("nama").value;
+            let nasi = Number(document.getElementById("nasi").value);
+            let teh = Number(document.getElementById("teh").value);
+            let roti = Number(document.getElementById("roti").value);
+
+            let subtotalNasi = nasi * 15000;
+            let subtotalTeh = teh * 5000;
+            let subtotalRoti = roti * 7000;
+
+            let totalBelanja = subtotalNasi + subtotalTeh + subtotalRoti;
+            let diskon = 0;
+
+            if (totalBelanja >= 50000) {
+                diskon = totalBelanja * 10 / 100;
+            }
+
+            let totalBayar = totalBelanja - diskon;
+
+            console.log("Pembeli: " + nama);
+            console.log("Total Belanja: Rp" + totalBelanja);
+            console.log("Diskon: Rp" + diskon);
+            console.log("Total Bayar: Rp" + totalBayar);
+
+            document.getElementById("hasil").innerHTML =
+                "<h3>Hasil Pembayaran</h3>" +
+                "Pembeli: " + nama + "<br>" +
+                "Total Belanja: Rp" + totalBelanja.toLocaleString("id-ID") + "<br>" +
+                "Diskon: Rp" + diskon.toLocaleString("id-ID") + "<br>" +
+                "Total Bayar: Rp" + totalBayar.toLocaleString("id-ID") +
+                "<br><br><button onclick='window.print()'>Print / Simpan PDF</button>";
+        }
+    </script>
+
+</body>
+</html>
